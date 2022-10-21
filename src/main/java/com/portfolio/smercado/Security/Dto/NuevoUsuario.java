@@ -8,6 +8,7 @@ import java.util.Set;
  * @author santi
  */
 public class NuevoUsuario {
+
     private String nombre;
     private String nombreUsuario;
     private String email;
@@ -53,7 +54,5 @@ public class NuevoUsuario {
     public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
-    
-    
-    
+
 }

@@ -15,34 +15,35 @@ import org.springframework.stereotype.Service;
 @Transactional
 @Service
 public class HySService {
+
     @Autowired
     IHySRepository rhys;
-    
-    public List<HyS> list(){
+
+    public List<HyS> list() {
         return rhys.findAll();
     }
-    
-    public Optional<HyS> getOne(int id){
+
+    public Optional<HyS> getOne(int id) {
         return rhys.findById(id);
     }
-    
-    public Optional<HyS> getByNombre(String nombre){
+
+    public Optional<HyS> getByNombre(String nombre) {
         return rhys.findByNombre(nombre);
     }
-    
-    public void save(HyS skill){
+
+    public void save(HyS skill) {
         rhys.save(skill);
     }
-    
-    public void delete(int id){
+
+    public void delete(int id) {
         rhys.deleteById(id);
     }
-    
-    public boolean existsById(int id){
+
+    public boolean existsById(int id) {
         return rhys.existsById(id);
     }
-    
-    public boolean existsByNombreE(String nombre){
+
+    public boolean existsByNombreE(String nombre) {
         return rhys.existsByNombre(nombre);
     }
 }

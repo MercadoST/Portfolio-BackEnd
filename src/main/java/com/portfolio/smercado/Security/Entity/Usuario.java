@@ -19,10 +19,11 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     private String nombre;
     @NotNull
@@ -32,7 +33,7 @@ public class Usuario {
     private String email;
     @NotNull
     private String password;
-    @ManyToMany(fetch =FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
 
@@ -93,7 +94,5 @@ public class Usuario {
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
-    
-    
-    
+
 }

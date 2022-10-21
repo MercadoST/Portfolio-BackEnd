@@ -6,8 +6,8 @@ import javax.validation.constraints.NotBlank;
  *
  * @author santi
  */
-
 public class DtoHyS {
+
     @NotBlank
     private String nombre;
     @NotBlank

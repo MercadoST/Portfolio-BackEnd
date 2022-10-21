@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
  * @author santi
  */
 @Repository
-public interface IEducacionRepository extends JpaRepository<Educacion, Integer>{
+public interface IEducacionRepository extends JpaRepository<Educacion, Integer> {
+
     public Optional<Educacion> findByNombreE(String nombreE);
+
     public boolean existsByNombreE(String nombreE);
 }

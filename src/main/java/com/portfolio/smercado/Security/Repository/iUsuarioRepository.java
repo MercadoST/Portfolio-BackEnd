@@ -1,4 +1,3 @@
-
 package com.portfolio.smercado.Security.Repository;
 
 import com.portfolio.smercado.Security.Entity.Usuario;
@@ -12,8 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface iUsuarioRepository extends JpaRepository<Usuario, Integer> {
+
     Optional<Usuario> findByNombreUsuario(String nombreUsuario);
-    
+
     boolean existsByNombreUsuario(String nombreUsuario);
+
     boolean existsByEmail(String email);
 }

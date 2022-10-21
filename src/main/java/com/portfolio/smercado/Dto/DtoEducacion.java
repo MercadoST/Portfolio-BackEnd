@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
  * @author santi
  */
 public class DtoEducacion {
+
     @NotBlank
     private String nombreE;
     @NotBlank

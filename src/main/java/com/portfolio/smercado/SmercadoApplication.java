@@ -9,11 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class SmercadoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SmercadoApplication.class, args);
-	}
-        
-        @Bean
+    public static void main(String[] args) {
+        SpringApplication.run(SmercadoApplication.class, args);
+    }
+
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override

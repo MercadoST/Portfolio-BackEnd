@@ -1,6 +1,5 @@
 package com.portfolio.smercado.Controller;
 
-
 import com.portfolio.smercado.Dto.DtoHyS;
 import com.portfolio.smercado.Entity.HyS;
 import com.portfolio.smercado.Security.Controller.Mensaje;
@@ -29,70 +28,71 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "https://portfolio-santiagom.web.app")
 public class HySController {
+
     @Autowired
     HySService shys;
-    
-     @GetMapping("/lista")
-    public ResponseEntity<List<HyS>> list(){
+
+    @GetMapping("/lista")
+    public ResponseEntity<List<HyS>> list() {
         List<HyS> list = shys.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id){
-        if(!shys.existsById(id)){
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         shys.delete(id);
         return new ResponseEntity(new Mensaje("Skill Eliminada"), HttpStatus.OK);
     }
-    
+
     @GetMapping("/detail/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") int id){
-        if(!shys.existsById(id)){
+    public ResponseEntity<?> getById(@PathVariable("id") int id) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        
+
         HyS hys = shys.getOne(id).get();
         return new ResponseEntity(hys, HttpStatus.OK);
     }
-    
+
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody DtoHyS dtoHyS){
-        if(StringUtils.isBlank(dtoHyS.getNombre())){
+    public ResponseEntity<?> create(@RequestBody DtoHyS dtoHyS) {
+        if (StringUtils.isBlank(dtoHyS.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(shys.existsByNombreE(dtoHyS.getNombre())){
+        if (shys.existsByNombreE(dtoHyS.getNombre())) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        
+
         HyS hys = new HyS(
                 dtoHyS.getNombre(), dtoHyS.getPorcentaje()
         );
         shys.save(hys);
         return new ResponseEntity(new Mensaje("Skill creada"), HttpStatus.OK);
     }
-    
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoHyS dtoHyS){
-        if(!shys.existsById(id)){
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoHyS dtoHyS) {
+        if (!shys.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if(shys.existsByNombreE(dtoHyS.getNombre()) && 
-                shys.getByNombre(dtoHyS.getNombre()).get().getId() != id){
+        if (shys.existsByNombreE(dtoHyS.getNombre())
+                && shys.getByNombre(dtoHyS.getNombre()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if(StringUtils.isBlank(dtoHyS.getNombre())){
+        if (StringUtils.isBlank(dtoHyS.getNombre())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
-        
+
         HyS hys = shys.getOne(id).get();
-        
+
         hys.setNombre(dtoHyS.getNombre());
         hys.setPorcentaje(dtoHyS.getPorcentaje());
-        
+
         shys.save(hys);
-        
+
         return new ResponseEntity(new Mensaje("Skill actualiuzada"), HttpStatus.OK);
     }
 }

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
  * @author santi
  */
 public class DtoExperiencia {
+
     @NotBlank
     private String nombreE;
     @NotBlank
@@ -35,6 +36,5 @@ public class DtoExperiencia {
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
     }
-    
-    
+
 }

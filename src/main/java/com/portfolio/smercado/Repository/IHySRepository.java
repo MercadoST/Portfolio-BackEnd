@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
  * @author santi
  */
 @Repository
-public interface IHySRepository extends JpaRepository<HyS, Integer>{
+public interface IHySRepository extends JpaRepository<HyS, Integer> {
+
     Optional<HyS> findByNombre(String nombre);
+
     public boolean existsByNombre(String nombre);
-    
+
 }

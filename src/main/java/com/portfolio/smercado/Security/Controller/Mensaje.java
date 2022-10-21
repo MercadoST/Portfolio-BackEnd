@@ -9,6 +9,7 @@ package com.portfolio.smercado.Security.Controller;
  * @author santi
  */
 public class Mensaje {
+
     private String mensaje;
 
     public Mensaje() {
@@ -25,5 +26,5 @@ public class Mensaje {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-    
+
 }
