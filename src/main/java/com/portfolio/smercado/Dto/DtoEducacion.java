@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 /**
  *
- * @author santi
+ * @author Santiago Mercado
  */
 public class DtoEducacion {
 
