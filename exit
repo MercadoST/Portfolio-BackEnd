@@ -1,0 +1,53 @@
+[33mcommit ed20061a23865ee3e759dec980ff01bdf79555f6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: MercadoST <santi_merca@live.com.ar>
+Date:   Tue Oct 18 23:29:27 2022 -0300
+
+    Cors errores4
+
+[1mdiff --git a/src/main/java/com/portfolio/smercado/Security/Controller/AuthController.java b/src/main/java/com/portfolio/smercado/Security/Controller/AuthController.java[m
+[1mindex c065caa..5a25037 100644[m
+[1m--- a/src/main/java/com/portfolio/smercado/Security/Controller/AuthController.java[m
+[1m+++ b/src/main/java/com/portfolio/smercado/Security/Controller/AuthController.java[m
+[36m@@ -55,10 +55,10 @@[m [mpublic class AuthController {[m
+             return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"),[m
+                     HttpStatus.BAD_REQUEST);[m
+         [m
+[31m-        if(usuarioService.existByNombreUsuario(nuevoUsuario.getNombreUsuario()))[m
+[32m+[m[32m        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))[m
+              return new ResponseEntity(new Mensaje("Ese nombre de Usuario ya existe"), HttpStatus.BAD_REQUEST);[m
+         [m
+[31m-        if(usuarioService.existByEmail(nuevoUsuario.getEmail()))[m
+[32m+[m[32m        if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))[m
+              return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);[m
+         [m
+         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), [m
+[1mdiff --git a/src/main/java/com/portfolio/smercado/Security/Service/UsuarioService.java b/src/main/java/com/portfolio/smercado/Security/Service/UsuarioService.java[m
+[1mindex 7bebfe9..8d522b5 100644[m
+[1m--- a/src/main/java/com/portfolio/smercado/Security/Service/UsuarioService.java[m
+[1m+++ b/src/main/java/com/portfolio/smercado/Security/Service/UsuarioService.java[m
+[36m@@ -22,11 +22,11 @@[m [mpublic class UsuarioService {[m
+         return iusuarioRepository.findByNombreUsuario(nombreUsuario);[m
+     }[m
+     [m
+[31m-    public boolean existByNombreUsuario(String nombreUsuario){[m
+[32m+[m[32m    public boolean existsByNombreUsuario(String nombreUsuario){[m
+         return iusuarioRepository.existsByNombreUsuario(nombreUsuario);[m
+     }[m
+     [m
+[31m-    public boolean existByEmail(String email){[m
+[32m+[m[32m    public boolean existsByEmail(String email){[m
+         return iusuarioRepository.existsByEmail(email);[m
+     }[m
+     [m
+[1mdiff --git a/src/main/resources/application.properties b/src/main/resources/application.properties[m
+[1mindex 131a028..620257e 100644[m
+[1m--- a/src/main/resources/application.properties[m
+[1m+++ b/src/main/resources/application.properties[m
+[36m@@ -1,6 +1,6 @@[m
+ #Deploy Space[m
+ spring.jpa.hibernate.ddl-auto=update[m
+[31m-spring.datasource.url=jdbc:mysql://ubyi3yviycgoenf4:e4qXzpg6NZ6kRY7kh0rP@bmpagcotagn20roupcrz-mysql.services.clever-cloud.com:3306/bmpagcotagn20roupcrz[m
+[32m+[m[32mspring.datasource.url=jdbc:mysql://ubyi3yviycgoenf4:5CO2lmKMkfkVv5cB2U9h@bmpagcotagn20roupcrz-mysql.services.clever-cloud.com:3306/bmpagcotagn20roupcrz[m
+ spring.datasource.username=ubyi3yviycgoenf4[m
+ spring.datasource.password=5CO2lmKMkfkVv5cB2U9h[m
+ spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect[m
